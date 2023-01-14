@@ -5,17 +5,6 @@ import {useEffect, useState} from "react";
 
 
 export default function FourOhFour() {
-  const [topCategories, setTopCategories] = useState([])
-  const fetchTopCategories = async () => {
-    const response = await axios.get("localhost:8080/api/v1/categories/top?count=8")
-    const data = await response.json()
-    setTopCategories(data)
-  }
-
-  useEffect(() => {
-    fetchTopCategories().then();
-  }, []);
-
   return (
     <>
       <DefaultLayout>
@@ -38,4 +27,19 @@ export default function FourOhFour() {
       </DefaultLayout>
     </>
   )
+}
+
+export async function getServerSideProps({params,req,res,query,preview,previewData,resolvedUrl,locale,locales,defaultLocale}) {
+  console.log(params)
+  if (query.text) {
+    return { redirect: { destination: '/post', permanent: false, },}
+  }
+
+  const data = await fetch('http://localhost:8080/api/v1/categories/top?count=8');
+  const topCategories = await data.json();
+  if (!data) {
+    return {notFound: true,}
+  }
+
+  return { props: { topCategories } }
 }

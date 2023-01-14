@@ -8,11 +8,11 @@ export default function About() {
   return (
     <>
       <DefaultLayout>
-        <section className={"featured-posts"}>
-          <div className={"section-title"} style={{alignContent: "center"}}>
+        <section className="featured-posts">
+          <div className="section-title" style={{alignContent: "center"}}>
             <h2><span>About us</span></h2>
           </div>
-          <div className={"listfeaturedtag"} style={{fontSize: "x-large", textAlign: "justify"}}>
+          <div className="listfeaturedtag" style={{fontSize: "x-large", textAlign: "justify"}}>
             <p>cryptos.blue is built upon a smart search engine. It is monitoring the data across the web and collect
               meaningful public social media threads about cryptocurrencies. It is supporting different <Link
                   href="https://cryptos.blue/categories">currencies</Link> at the moment. </p>

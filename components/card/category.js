@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "../logo/logo";
 
-export function CategoryCard(category) {
+export function IndexCategoryCard(category) {
     return (
         <div className="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6">
             <div className="card">
@@ -15,6 +15,21 @@ export function CategoryCard(category) {
                         <Link href={category.url}>{category.title}</Link>
                     </h2>
                 </div>
+            </div>
+        </div>
+    )
+}
+
+export function CategoryListCard(category) {
+    return (
+        <div className="col-lg-3 col-md-4 col-sm-6 category-card">
+            <div className="content">
+                <Link href={category.url}>
+                    <Image className="img-fluid img-fluid-custom thumbnail" src={category.image.url} />
+                </Link>
+                <h2 className="card-title card-title-custom"><a
+                    href={category.url}>{category.title}</a></h2>
+                <div className="clear"></div>
             </div>
         </div>
     )
