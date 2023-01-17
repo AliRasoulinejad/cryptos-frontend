@@ -7,12 +7,12 @@ export function IndexCategoryCard(category) {
     return (
         <div className="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6">
             <div className="card">
-                <Link href={category.url}>
+                <Link href={`${category.slug}`}>
                     <Image className="img-fluid" src={category.image} alt={category.title}/>
                 </Link>
                 <div className="card-block">
                     <h2 className="card-title">
-                        <Link href={category.url}>{category.title}</Link>
+                        <Link href={`${category.slug}`}>{category.title}</Link>
                     </h2>
                 </div>
             </div>
@@ -24,7 +24,7 @@ export function CategoryListCard(category) {
     return (
         <div className="col-lg-3 col-md-4 col-sm-6 category-card">
             <div className="content">
-                <Link href={category.url}>
+                <Link href={`${category.slug}`}>
                     <Image className="img-fluid img-fluid-custom thumbnail" src={category.image.url} />
                 </Link>
                 <h2 className="card-title card-title-custom"><a
