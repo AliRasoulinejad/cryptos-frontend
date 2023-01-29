@@ -5,7 +5,7 @@ import axios from "axios";
 export default function Categories() {
     const [categories, setCategories] = useState([])
     const fetchCategories = async () => {
-        const response = await axios.get(`http://localhost:8080/api/v1/categories/`)
+        const response = await axios.get(`https://api.cryptos.blue/api/v1/categories/`)
         const data = await response.data
         setCategories(data)
     }

@@ -3,12 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "../logo/logo";
 
-export function IndexCategoryCard(category) {
+export function IndexCategoryCard({category}) {
     return (
         <div className="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6">
             <div className="card">
                 <Link href={`${category.slug}`}>
-                    <Image className="img-fluid" src={category.image} alt={category.title}/>
+                    <Image className="img-fluid" src={`https://cryptos.blue/media/${category.image}`} alt={category.title} width={100} height={100}/>
                 </Link>
                 <div className="card-block">
                     <h2 className="card-title">

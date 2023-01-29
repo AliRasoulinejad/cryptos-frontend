@@ -9,12 +9,10 @@ import {useRouter} from "next/router";
 export default function Posts() {
     const router = useRouter()
     const qq = router.query
-    console.log("qqqqqqqqqqqqqqqq")
-    console.log(qq)
 
     const [allPosts, setPosts] = useState([])
     const fetchPosts = async () => {
-        const response = await axios.get(`http://localhost:8080/api/v1/blogs?page={page}`)
+        const response = await axios.get(`https://api.cryptos.blue/api/v1/blogs?page={page}`)
         const data = await response.data
         setPosts(data)
     }

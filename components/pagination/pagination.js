@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-export default function Pagination(pageNumber) {
+export default function Pagination({pageNumber}) {
     return (
         <div className='pagination justify-content-center mt-5'>
             <Link href=''>Previous</Link>

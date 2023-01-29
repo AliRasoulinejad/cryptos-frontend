@@ -6,7 +6,7 @@ import axios from "axios";
 export default function Nav() {
     const [topCategories, setTopCategories] = useState([])
     const fetchTopCategories = async () => {
-        const response = await axios.get("http://localhost:8080/api/v1/categories/top?count=3")
+        const response = await axios.get("https://api.cryptos.blue/api/v1/categories/top?count=3")
         const data = await response.data
         setTopCategories(data)
         console.log(data)

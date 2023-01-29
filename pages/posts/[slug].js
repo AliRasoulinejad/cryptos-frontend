@@ -11,19 +11,19 @@ export default function Post() {
     const [postComments, setPostComments] = useState([])
     const [recommendedPosts, setRecommendedPosts] = useState([])
     const fetchPost = async () => {
-        const response = await axios.get(`http://localhost:8080/api/v1/blogs/{slug}`)
+        const response = await axios.get(`https://api.cryptos.blue/api/v1/blogs/{slug}`)
         const data = await response.data
         setPost(data)
     }
 
     const fetchPostComments = async () => {
-        const response = await axios.get(`http://localhost:8080/api/v1/blogs/{slug}/comments`)
+        const response = await axios.get(`https://api.cryptos.blue/api/v1/blogs/{slug}/comments`)
         const data = await response.data
         setPostComments(data)
     }
 
     const fetchRecommendedPosts = async () => {
-        const response = await axios.get(`http://localhost:8080/api/v1/blogs/{slug}/recommendations`)
+        const response = await axios.get(`https://api.cryptos.blue/api/v1/blogs/{slug}/recommendations`)
         const data = await response.data
         setRecommendedPosts(data)
     }
@@ -46,7 +46,7 @@ export default function Post() {
 
     return (
         <>
-        // popup comment
+        {/*popup comment*/}
         <div className="popup-wrapper"></div>
         <div className="popup">
             <h4 id="popup_title"></h4>
@@ -60,7 +60,7 @@ export default function Post() {
         <script src="/assets/js/comments.js"></script>
 
         <div className="row">
-            // Begin Fixed Left Share
+            {/*Begin Fixed Left Share*/}
             <div className="col-md-2 col-xs-12 share-center">
                 <div className="share">
                     <p>
@@ -87,23 +87,23 @@ export default function Post() {
                     <div className="sep">
                     </div>
 
-                    // icon like
+                    {/*icon like*/}
                     <div className="like-width">
                         <div id="l-counter" className="mb-1">{post.likesCount}</div>
                         <svg
                             className="comment-reaction-icon reaction-like user-has-not-reacted like {% if userLike == 1 %}active{% endif %}"
                             xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" stroke="#427297"
-                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            strokeWidth={"1.7"} strokeLinecap={"round"} strokeLinejoin={"round"}>
                             <path
                                 d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
                         </svg>
                     </div>
-                    // icon dislike
+                    {/*icon dislike*/}
                     <div className="dislike-width">
                         <svg
                             className="comment-reaction-icon reaction-dislike user-has-reacted dislike {% if userLike == -1 %}active{% endif %}"
                             xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" stroke="#427297"
-                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            strokeWidth={"1.7"} strokeLinecap={"round"} strokeLinejoin={"round"}>
                             <path
                                 d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path>
                         </svg>
@@ -124,13 +124,13 @@ export default function Post() {
                     </ul>
                 </div>
             </div>
-            // End Fixed Left Share
+            {/*End Fixed Left Share*/}
 
-            // Begin Post
+            {/*Begin Post*/}
             <div className="col-md-8 col-md-offset-2 col-xs-12 mb-3">
                 <div className="mainheading">
 
-                    // Begin Top Meta
+                    {/*Begin Top Meta*/}
                     <div className="row post-top-meta">
                         <div className="col-md-2">
                             <Link href={post.author.url}>
@@ -145,20 +145,20 @@ export default function Post() {
                             <span className="post-read">{post.readingTime} minutes reading from <Link href={post.category.url}>{post.category.title}</Link></span>
                         </div>
                     </div>
-                    // End Top Menta
+                    {/*End Top Menta*/}
 
                     <h1 className="posttitle">{post.title}</h1>
 
                 </div>
 
-                // Begin Post Content
+                {/*Begin Post Content*/}
                 <div className="article-post mb-5">
                     {post.content | blog_processor | safe}
                     This post is based on <Link href="https://twitter.com/anyuser/status/{post.conversationId}">this twitter thread</Link>.
                 </div>
 
 
-                // Comments
+                {/*Comments*/}
                 <h2 className="mb-4" id="comments">Comments</h2>
                 <div className="container line-style mt-auto"></div>
 
@@ -194,11 +194,11 @@ export default function Post() {
                     </div>
                 </div>
             </div>
-            // End Article
+            {/*End Article*/}
 
             <div className="hideshare"></div>
 
-            // Begin Related
+            {/*Begin Related*/}
             <div className="graybg">
                 <div className="container">
                     <div className="row listrecent listrelated">
@@ -208,7 +208,7 @@ export default function Post() {
                     </div>
                 </div>
             </div>
-            // End Related Posts
+            {/*End Related Posts*/}
         </div>
     </>
     )
