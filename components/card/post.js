@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export function IndexPostCard({post}) {
-    const postUrl = `posts/${post.conversationID}`
+    const postUrl = `posts/${post.slug}`
     return (
         <div className="col-xl-4 col-lg-6 col-md-6 mb-4">
             <div className="card card-custom">

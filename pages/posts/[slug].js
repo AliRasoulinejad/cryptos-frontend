@@ -6,42 +6,15 @@ import {RecommendedPostCard} from "../../components/card/post";
 import {Comment} from "../../components/card/comment";
 
 
-export default function Post() {
-    const [post, setPost] = useState([])
-    const [postComments, setPostComments] = useState([])
-    const [recommendedPosts, setRecommendedPosts] = useState([])
-    const fetchPost = async () => {
-        const response = await axios.get(`https://api.cryptos.blue/api/v1/blogs/{slug}`)
-        const data = await response.data
-        setPost(data)
-    }
-
-    const fetchPostComments = async () => {
-        const response = await axios.get(`https://api.cryptos.blue/api/v1/blogs/{slug}/comments`)
-        const data = await response.data
-        setPostComments(data)
-    }
-
-    const fetchRecommendedPosts = async () => {
-        const response = await axios.get(`https://api.cryptos.blue/api/v1/blogs/{slug}/recommendations`)
-        const data = await response.data
-        setRecommendedPosts(data)
-    }
-
-    useEffect(() => {
-        fetchPost().then();
-        fetchPostComments().then();
-        fetchRecommendedPosts().then();
-    }, []);
-
-    const blog_id = '{post.id}';
-    const csrf_key = '{csrf_token}';
-    const session_key = '{request.session.session_key}';
-    const userLike = parseInt('{userLike}');
-    const userIsAuthenticated = '{user.isAuthenticated}'.toLowerCase() === 'true';
-    const like_count = parseInt('{post.likesCount}');
-    const dislike_count = parseInt('{post.disLikesCount}');
-    const user_name = '{user}'
+export default function Post({post, postComments, recommendedPosts}) {
+    // const blog_id = '{post.id}';
+    // const csrf_key = '{csrf_token}';
+    // const session_key = '{request.session.session_key}';
+    // const userLike = parseInt('{userLike}');
+    // const userIsAuthenticated = '{user.isAuthenticated}'.toLowerCase() === 'true';
+    // const like_count = parseInt('{post.likesCount}');
+    // const dislike_count = parseInt('{post.disLikesCount}');
+    // const user_name = '{user}'
 
 
     return (
@@ -69,7 +42,7 @@ export default function Post() {
                     <ul>
                         <li>
                             <Link target="_blank"
-                               href="https://twitter.com/intent/tweet?text={ post.title }&url={ post.get_full_path }&via={ post.author.username }">
+                               href={`https://twitter.com/intent/tweet?text=${post.title}&url=${post.id}&via=${post.author.userName}`}>
                                 <svg className="svgIcon-use" width="29" height="29" viewBox="0 0 29 29">
                                     <path
                                         d="M21.967 11.8c.018 5.93-4.607 11.18-11.177 11.18-2.172 0-4.25-.62-6.047-1.76l-.268.422-.038.5.186.013.168.012c.3.02.44.032.6.046 2.06-.026 3.95-.686 5.49-1.86l1.12-.85-1.4-.048c-1.57-.055-2.92-1.08-3.36-2.51l-.48.146-.05.5c.22.03.48.05.75.08.48-.02.87-.07 1.25-.15l2.33-.49-2.32-.49c-1.68-.35-2.91-1.83-2.91-3.55 0-.05 0-.01-.01.03l-.49-.1-.25.44c.63.36 1.35.57 2.07.58l1.7.04L7.4 13c-.978-.662-1.59-1.79-1.618-3.047a4.08 4.08 0 0 1 .524-1.8l-.825.07a12.188 12.188 0 0 0 8.81 4.515l.59.033-.06-.59v-.02c-.05-.43-.06-.63-.06-.87a3.617 3.617 0 0 1 6.27-2.45l.2.21.28-.06c1.01-.22 1.94-.59 2.73-1.09l-.75-.56c-.1.36-.04.89.12 1.36.23.68.58 1.13 1.17.85l-.21-.45-.42-.27c-.52.8-1.17 1.48-1.92 2L22 11l.016.28c.013.2.014.35 0 .52v.04zm.998.038c.018-.22.017-.417 0-.66l-.498.034.284.41a8.183 8.183 0 0 0 2.2-2.267l.97-1.48-1.6.755c.17-.08.3-.02.34.03a.914.914 0 0 1-.13-.292c-.1-.297-.13-.64-.1-.766l.36-1.254-1.1.695c-.69.438-1.51.764-2.41.963l.48.15a4.574 4.574 0 0 0-3.38-1.484 4.616 4.616 0 0 0-4.61 4.613c0 .29.02.51.08.984l.01.02.5-.06.03-.5c-3.17-.18-6.1-1.7-8.08-4.15l-.48-.56-.36.64c-.39.69-.62 1.48-.65 2.28.04 1.61.81 3.04 2.06 3.88l.3-.92c-.55-.02-1.11-.17-1.6-.45l-.59-.34-.14.67c-.02.08-.02.16 0 .24-.01 2.12 1.55 4.01 3.69 4.46l.1-.49-.1-.49c-.33.07-.67.12-1.03.14-.18-.02-.43-.05-.64-.07l-.76-.09.23.73c.57 1.84 2.29 3.14 4.28 3.21l-.28-.89a8.252 8.252 0 0 1-4.85 1.66c-.12-.01-.26-.02-.56-.05l-.17-.01-.18-.01L2.53 21l1.694 1.07a12.233 12.233 0 0 0 6.58 1.917c7.156 0 12.2-5.73 12.18-12.18l-.002.04z"></path>
@@ -133,16 +106,19 @@ export default function Post() {
                     {/*Begin Top Meta*/}
                     <div className="row post-top-meta">
                         <div className="col-md-2">
-                            <Link href={post.author.url}>
-                                <Image className="author-thumb" src={post.author.image} alt={post.author.name} />
+                            <Link href={`@${post.author.userName}`}>
+                                <Image className="author-thumb" src={`https://cryptos.blue/media/${post.author.image}`} alt={post.author.name} width={100} height={100} />
                             </Link>
                         </div>
                         <div className="col-md-10">
-                            <Link className="link-dark" href={post.author.url}>{post.author.name}</Link>
+                            <Link className="link-dark" href={`@${post.author.userName}`}>{post.author.name}</Link>
                             <span className="author-description">{post.author.description}</span>
                             <span className="post-date">createdAt={post.createdAt}</span>
                             <span className="dot"></span>
-                            <span className="post-read">{post.readingTime} minutes reading from <Link href={post.category.url}>{post.category.title}</Link></span>
+                            <span className="post-read">
+                                {post.readingTime} minutes reading from
+                                <Link href={`${post.categoryID}`}>{post.categoryID}</Link>
+                            </span>
                         </div>
                     </div>
                     {/*End Top Menta*/}
@@ -153,7 +129,8 @@ export default function Post() {
 
                 {/*Begin Post Content*/}
                 <div className="article-post mb-5">
-                    {post.content | blog_processor | safe}
+                    {/*{post.content | blog_processor | safe}*/}
+                    {post.content}
                     This post is based on <Link href="https://twitter.com/anyuser/status/{post.conversationId}">this twitter thread</Link>.
                 </div>
 
@@ -212,4 +189,23 @@ export default function Post() {
         </div>
     </>
     )
+}
+
+export async function getServerSideProps(context) {
+    const {slug} = context.params
+
+    const postResponse = await axios.get(`https://api.cryptos.blue/api/v1/blogs/${slug}`)
+    const post = await postResponse.data
+
+    const commentsResponse = await axios.get(`https://api.cryptos.blue/api/v1/blogs/${slug}/comments`)
+    const postComments = await commentsResponse.data
+
+    const recommendedPostsResponse = await axios.get(`https://api.cryptos.blue/api/v1/blogs/${slug}/recommendations?count=3`)
+    const recommendedPosts = await recommendedPostsResponse.data
+
+    if (postResponse.status !== 200 || commentsResponse.status !== 200 || recommendedPostsResponse.status !== 200) {
+        return {notFound: true,}
+    }
+
+    return { props: { post: post, postComments: postComments, recommendedPosts: recommendedPosts } }
 }
