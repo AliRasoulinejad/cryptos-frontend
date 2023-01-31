@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import Logo from "../logo/logo";
 import axios from "axios";
+import bootstrap from "bootstrap/dist/css/bootstrap.css";
+import Image from "next/image";
 
 export default function Nav() {
     const [topCategories, setTopCategories] = useState([])
@@ -9,7 +11,6 @@ export default function Nav() {
         const response = await axios.get("https://api.cryptos.blue/api/v1/categories/top?count=3")
         const data = await response.data
         setTopCategories(data)
-        console.log(data)
     }
 
     useEffect(() => {
@@ -17,7 +18,6 @@ export default function Nav() {
     }, []);
 
     return (
-        <div>
             <nav className="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
                 <button className="icons-login-logout-responsive">
                     <Link href="/accounts/login" className="btn btn-info">Sign In / Sign Up</Link>
@@ -31,11 +31,11 @@ export default function Nav() {
 
                 <div className="container">
                     <Logo />
-                    <div className="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <div className="collapse navbar-collapse" id={"navbarsExampleDefault"}>
                         <ul className="navbar-nav ml-auto">
                             {topCategories.map(category => (
-                                <li className="nav-item">
-                                    <Link className="nav-link" href="/categories/{category.slug}">{category.title}</Link>
+                                <li className="nav-item" id={`category-${category.slug}`}>
+                                    <Link className="nav-link" href={`${category.slug}`}>{category.title}</Link>
                                 </li>
                             ))}
                         </ul>
@@ -46,6 +46,5 @@ export default function Nav() {
                     </div>
                 </div>
             </nav>
-        </div>
     )
 }

@@ -17,17 +17,16 @@ export function DefaultLayout({children}) {
                 <meta name="author" content="" />
             </Head>
 
-            {/*<main className={styles.main}>*/}
             <main>
                 <noscript>
-                    <iframe src="https://www.googletagmanager.com/ns.html?id={{ GOOGLE_TAG_MANAGER_KEY }}"
+                    <iframe src={"https://www.googletagmanager.com/ns.html?id={{ GOOGLE_TAG_MANAGER_KEY }}"}
                             height="0" width="0" style={{display:"none", visibility:"hidden"}}></iframe>
                 </noscript>
 
-                <div className={bootstrap["page-style"]}>
+                <div className="page-style">
                     <Nav />
-                    <div className={bootstrap["content-style"]}>
-                        <div className={bootstrap["container"]}>
+                    <div className="content-style" style={{height: "auto !important"}}>
+                        <div className="container" style={{height: "auto !important"}}>
                             {children}
                         </div>
                     </div>

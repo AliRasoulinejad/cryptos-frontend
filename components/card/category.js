@@ -8,7 +8,7 @@ export function IndexCategoryCard({category}) {
         <div className="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6">
             <div className="card">
                 <Link href={`${category.slug}`}>
-                    <Image className="img-fluid" src={`https://cryptos.blue/media/${category.image}`} alt={category.title} width={100} height={100}/>
+                    <Image className="img-fluid" src={`https://cryptos.blue/media/${category.image}`} alt={category.title} width="158" height="158"/>
                 </Link>
                 <div className="card-block">
                     <h2 className="card-title">

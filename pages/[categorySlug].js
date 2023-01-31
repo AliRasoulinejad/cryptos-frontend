@@ -5,29 +5,32 @@ import Link from "next/link";
 import {CategoryPostsCard, RecommendedPostCard} from "../components/card/post";
 import {Comment} from "../components/card/comment";
 import Pagination from "../components/pagination/pagination";
+import {DefaultLayout} from "../layouts/default";
 
 
 export default function Category({category, posts}) {
     return (
-        <>
-            <div style={{direction: "rtl"}}>
-                {category.description}
-            </div>
-
-            {/*Begin Category Posts*/}
-            <div className="graybg authorpage">
-                <div className="container">
-                    <div className="listrecent listrelated">
-                        <div className="row">
-                            {posts.map(post => (
-                                <CategoryPostsCard post={post}/>
-                            ))}
-                        </div>
-                    </div>
-                    <Pagination pageNumber={1} />
+        <DefaultLayout>
+            <>
+                <div style={{direction: "rtl"}}>
+                    {category.description}
                 </div>
-            </div>
-        </>
+
+                {/*Begin Category Posts*/}
+                <div className="graybg authorpage">
+                    <div className="container">
+                        <div className="listrecent listrelated">
+                            <div className="row">
+                                {posts.map(post => (
+                                    <CategoryPostsCard post={post} defaultImage={category.image}/>
+                                ))}
+                            </div>
+                        </div>
+                        <Pagination pageNumber={1} />
+                    </div>
+                </div>
+            </>
+        </DefaultLayout>
     )
 }
 

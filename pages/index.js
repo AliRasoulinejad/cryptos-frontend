@@ -41,8 +41,8 @@ export default function Home() {
             <h2><span>Popular Posts</span></h2>
           </div>
 
-          <div className="listrecent">
-            <div className="row">
+          <div className="listrecent" style={{height: "auto !important"}}>
+            <div className="row" style={{height: "auto !important"}}>
                 {featuredPosts.map(post => (
                     <IndexPostCard post={post}/>
                 ))}
